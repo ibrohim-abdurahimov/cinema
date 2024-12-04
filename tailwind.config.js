@@ -11,10 +11,10 @@ export default {
     },
     extend: {
       backgroundImage:{
-        'avengars': "url('./src/assets/avengarss.webp')",
-        'panda': "url('./src/assets/panda.png')",
-        'jon': "url('./src/assets/john-wick.jpg')",
-        'venom': "url('./src/assets/venom.jpg')"
+        'avengars': "url('./assets/avengarss.webp')",
+        'panda': "url('./assets/panda.png')",
+        'jon': "url('./assets/john-wick.jpg')",
+        'venom': "url('./assets/venom.jpg')"
       }
     },
     colors:{
