@@ -11,9 +11,12 @@ import avengars from '../../assets/avengarss.webp'
 import john from '../../assets/john-wick.jpg'
 import venom from '../../assets/venom.jpg'
 import { FaPlay } from "react-icons/fa6";
-
+import { useGetMovieQuery } from '../../redux/api/movie-api';
+import Movie from '../../components/Movie/Movie';
+//  release_date
 const Home = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const {data} = useGetMovieQuery()
   return (
     <>
       <div className=' container mt-4 '>
@@ -140,52 +143,7 @@ const Home = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <section className='mt-12'>
-        <div className='container'>
-          <div className='flex justify-between text-xl'>
-            <p className='text-white'>На неделе</p>
-            <p className='text-primary'>Показать все</p>
-          </div>
-          <div className='container grid grid-cols-4  gap-5 mt-5'>
-            <div>
-              <div className='h-[400px]'>
-                <img className='w-full h-full object-cover' src={panda} alt="" />
-              </div>
-              <div className='text-white mt-3'>
-                <h2 className='text-2xl'>Kung Fu Panda 4</h2>
-                <p className='text-sm text-[#4D4D4D]'>Комедия</p>
-              </div>
-            </div>
-            <div>
-              <div className='h-[400px]'>
-                <img className='w-full h-full object-cover' src={avengars} alt="" />
-              </div>
-              <div className='text-white mt-3'>
-                <h2 className='text-2xl'>Avengers: Infinity War</h2>
-                <p className='text-sm text-[#4D4D4D]'>Комедия / Боевик / Фэнтези</p>
-              </div>
-            </div>
-            <div>
-              <div className='h-[400px]'>
-                <img className='w-full h-full object-cover' src={john} alt="" />
-              </div>
-              <div className='text-white mt-3'>
-                <h2 className='text-2xl'>Jhon Wick - 4</h2>
-                <p className='text-sm text-[#4D4D4D]'>Боевик</p>
-              </div>
-            </div>
-            <div>
-              <div className='h-[400px]'>
-                <img className='w-full h-full object-cover' src={venom} alt="" />
-              </div>
-              <div className='text-white mt-3'>
-                <h2 className='text-2xl'>Venom: The Last Dance</h2>
-                <p className='text-sm text-[#4D4D4D]'>Боевик / Фэнтези</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Movie/>
     </>
   )
 }
