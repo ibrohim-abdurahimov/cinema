@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import logo from '../../assets/mainlogo.svg'
 import ruflag from '../../assets/flag rus.png'
 import { RiTv2Fill } from "react-icons/ri";
@@ -12,6 +12,14 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 
 
 const Header = () => {
+    const [shadow, setShadow] = useState(false)
+    window.addEventListener("scroll", () => {
+        if (document.documentElement.scrollTop >= 10) {
+            setShadow(true)
+        } else {
+            setShadow(false)
+        }
+    })
     useEffect(() => {
         const value = localStorage.getItem('theme')
         if (value) {
@@ -22,29 +30,31 @@ const Header = () => {
         document.body.classList.toggle('dark')
         if (document.body.classList.contains('dark')) {
             localStorage.setItem('theme', 'dark')
-            
+
         } else {
             localStorage.setItem('theme', '')
         }
     }
     return (
-        <header className='text-white mt-2 sticky top-0 left-0 z-50 bg-black'>
+        <header className={`text-white  sticky top-0 left-0 z-50 bg-transparent ${shadow ? 'bg-gray-950' : 'bg-[#0005]'}`}>
             <div className='container  px-2'>
                 <nav className='flex justify-between items-center h-[80px]'>
                     <div>
-                        <img src={logo} alt="" />
+                        <NavLink to={'/'}>
+                            <img src={logo} alt="" />
+                        </NavLink>
                     </div>
                     <ul className='flex items-center'>
                         <li className='px-7 py-1'>
-                            <NavLink>
+                            <NavLink to={'/'}>
                                 <RiTv2Fill className='m-auto' />
                                 <span>Афиша</span>
                             </NavLink>
                         </li>
                         <li className='px-7 py-1'>
-                            <NavLink>
+                            <NavLink to={'/discover'}>
                                 <IoTabletPortrait className='m-auto' />
-                                <span>Сеансы</span>
+                                <span>Discover</span>
                             </NavLink>
                         </li>
                         <li className='px-7 py-1'>
@@ -67,7 +77,7 @@ const Header = () => {
                             <MdKeyboardArrowDown />
                         </div>
                         <button className='px-16 py-4 bg-primary text-white rounded-xl'>Войти</button>
-                        <div className='dark:bg-black dark:text-white'>
+                        <div>
                             <button onClick={dark}>dark</button>
                         </div>
                     </div>

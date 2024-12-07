@@ -18,8 +18,8 @@ import { IoLogoYoutube } from "react-icons/io";
 const Footer = () => {
   return (
     <>
-      <footer className='mt-[120px] mb-5'>
-        <div className='container grid grid-cols-4 bg-footer px-8 py-8 rounded-xl'>
+      <footer className='mt-[120px]  bg-footer'>
+        <div className='container grid grid-cols-4  px-8 py-8 rounded-xl'>
           <div className='flex flex-col justify-between'>
             <div>
               <img src={logo} alt="" />

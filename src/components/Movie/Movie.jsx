@@ -1,20 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGetMovieQuery } from '../../redux/api/movie-api'
 import { MOVIE_LIST } from '../../static'
 import Pagination from '@mui/material/Pagination';
 import { TiStarOutline } from "react-icons/ti";
 import { colors } from '@mui/material';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const Movie = () => {
-    const [type, setType] = useState('now_playing')
-    const [page, setPage] = useState(1)
+    const [params, setParams] =useSearchParams()
+    const [type, setType] = useState(params.get('path') || 'now_playing')
+    const [page, setPage] = useState(+params.get('count') ||1)
     const { data } = useGetMovieQuery({ type, params: { page} })
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(!params.get('path')){
+            setType('now_playing')
+        }
+    }, [params.get('path')])
     const handleChange = (event, value) => {
         setPage(value);
+        const p = new URLSearchParams(params)
+        p.set('count' , value)
+        setParams(p)
       }
       const handleChangeType = (path)=>{
         setType(path)
         setPage(1)
+        setParams({path, count:1})
       }
     return (
         <>
@@ -29,7 +42,7 @@ const Movie = () => {
                 {
                     data?.results?.map(movie => (
                         <div key={movie.id}>
-                            <img src={import.meta.env.VITE_IMAGE_URL + movie.poster_path} alt="" />
+                            <img onClick={()=> navigate(`/movie/${movie.id}`)} src={import.meta.env.VITE_IMAGE_URL + movie.poster_path} alt="" />
                             <h3 className='mt-2 text-2xl'>{movie.title}</h3>
                             <p className='flex items-center gap-1'><TiStarOutline className='text-orange-400 text-lg'/>
                             {movie.vote_average}
