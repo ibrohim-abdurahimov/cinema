@@ -15,11 +15,6 @@ const Detail = () => {
   const { data: images } = useGetDetailImagesQuery(id)
   const { data: similar } = useGetDetailSimilarQuery(id)
   const navigate = useNavigate()
-  console.log(images);
-
-  console.log(similar);
-
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
