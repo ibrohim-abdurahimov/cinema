@@ -36,7 +36,7 @@ const Header = () => {
         }
     }
     return (
-        <header className={`text-white  sticky top-0 left-0 z-50 bg-transparent ${shadow ? 'bg-gray-950' : 'bg-[#0005]'}`}>
+        <header className={`text-white  sticky top-0 left-0 z-50 bg-transparent ${shadow ? 'bg-[#000]' : 'bg-[#0005] ' }`}>
             <div className='container  px-2'>
                 <nav className='flex justify-between items-center h-[80px]'>
                     <div>
