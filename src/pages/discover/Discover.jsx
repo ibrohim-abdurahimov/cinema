@@ -1,21 +1,49 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGetMovieDiscoverQuery } from '../../redux/api/movie-api'
 import { TiStarOutline } from 'react-icons/ti'
 import { useGetGenreQuery } from '../../redux/api/genre-api'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import Pagination from '@mui/material/Pagination';
 
 const Discover = () => {
     const navigate = useNavigate()
-    const [selectedGenre, setSelectedGenre] = useState([])
+    const [searchParams, setSearchParams] = useSearchParams()
+    const [selectedGenre, setSelectedGenre] = useState(searchParams.get('genre') && searchParams.get('genre')?.split('-').map(Number) || [])
+    const [page, setPage] = useState(+searchParams.get('count') ||1)
     const { data: genres } = useGetGenreQuery()
-    const { data } = useGetMovieDiscoverQuery({ with_genres: selectedGenre.join(',') })
+    const { data, isLoading } = useGetMovieDiscoverQuery({ 
+        with_genres: selectedGenre.join(','),
+        page,
+        without_genres: '10749,18'
+    
+    })
+    // useEffect(() => {
+    //     if(selectedGenre.length){
+    //         setSearchParams({genre:selectedGenre.join('-')})
+    //     }else{
+    //         setSearchParams({})
+    //     }
+    // } , [selectedGenre])
+
     const handleChangeGenre = id => {
+        const p = new URLSearchParams(searchParams)
         if (selectedGenre.includes(id)) {
             setSelectedGenre(p => p.filter(i => i !== id))
+            p.set('genre', selectedGenre.filter(i=> i !== id).join('-'))
         } else {
             setSelectedGenre(p => [...p, id])
+            p.set('genre', [...selectedGenre, id].join('-'))
         }
+        p.set('count', 1)
+        setSearchParams(p)
+        setPage(1)
     }
+    const handleChange = (event, value) => {
+        setPage(value);
+        const p = new URLSearchParams(searchParams)
+        p.set('count' , value)
+        setSearchParams(p)
+      }
     return (
         <>
             <div className='container mt-10 flex gap-5 overflow-auto p-5 pt-4 '>
@@ -40,8 +68,11 @@ const Discover = () => {
                 }
             </div>
             {
-                !data?.total_results && <div><h2 className='text-center'>Movie not found</h2></div>
+                !data?.total_results && !isLoading && <div><h2 className='text-center'>Movie not found</h2></div>
             }
+            <div className='flex justify-center pt-6'>
+                <Pagination variant="outlined" shape="rounded" className='bg-white'  color='primary'  count={data?.total_pages > 500 ? 500:data?.total_pages } page={page} onChange={handleChange}/>
+            </div>
         </>
     )
 }

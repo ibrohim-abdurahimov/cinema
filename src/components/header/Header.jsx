@@ -32,11 +32,11 @@ const Header = () => {
             localStorage.setItem('theme', 'dark')
 
         } else {
-            localStorage.setItem('theme', '')
+            localStorage.setItem('theme', 'light')
         }
     }
     return (
-        <header className={`text-white  sticky top-0 left-0 z-50 bg-transparent ${shadow ? 'bg-zinc-950 shadow-lg ' : 'bg-[#0004] shadow-lg text-black dark:text-white font-bold' }`}>
+        <header className={` sticky top-0 left-0 z-50 bg-transparent ${shadow ? 'bg-zinc-950 shadow-lg text-white' : 'bg-[#0004] shadow-lg  text-black dark:text-white' }`}>
             <div className='container  px-2'>
                 <nav className='flex justify-between items-center h-[80px]'>
                     <div>

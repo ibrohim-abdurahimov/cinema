@@ -15,7 +15,7 @@ function App() {
     if(document.body.classList.contains('dark')){
       localStorage.setItem('theme', 'dark')
     }else{
-      localStorage.setItem('theme', '')
+      localStorage.setItem('theme', 'light')
     }
   }
 
