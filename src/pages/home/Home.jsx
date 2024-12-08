@@ -130,7 +130,7 @@ const Home = () => {
           className="mySwiper"
         >
           <SwiperSlide>
-            <img src={panda} alt="" />
+            <img className='w-full h-full' src={panda} alt="" />
           </SwiperSlide>
           <SwiperSlide>
             <img src={avengars} alt="" />
