@@ -68,7 +68,7 @@ const Discover = () => {
                 }
             </div>
             {
-                !data?.total_results && !isLoading && <div><h2 className='text-center'>Movie not found</h2></div>
+                !data?.total_results && !isLoading && <div><h2 className='text-center'>Movie is not found</h2></div>
             }
             <div className='flex justify-center pt-6'>
                 <Pagination variant="outlined" shape="rounded" className='bg-white'  color='primary'  count={data?.total_pages > 500 ? 500:data?.total_pages } page={page} onChange={handleChange}/>

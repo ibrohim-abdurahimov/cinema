@@ -143,7 +143,6 @@ const Home = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <Movie/>
     </>
   )
 }

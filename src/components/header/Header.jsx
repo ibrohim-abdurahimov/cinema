@@ -36,7 +36,7 @@ const Header = () => {
         }
     }
     return (
-        <header className={` sticky top-0 left-0 z-50 bg-transparent ${shadow ? 'bg-zinc-950 shadow-lg text-white' : 'bg-[#0004] shadow-lg  text-black dark:text-white' }`}>
+        <header className={` sticky top-0 left-0 z-50 bg-transparent ${shadow ? 'bg-zinc-950 shadow-lg text-white' : 'bg-[#0004] shadow-lg shadow-[#0002]  text-black dark:text-white dark:shadow-white dark:shadow-md' }`}>
             <div className='container  px-2'>
                 <nav className='flex justify-between items-center h-[80px]'>
                     <div>
@@ -46,7 +46,7 @@ const Header = () => {
                     </div>
                     <ul className='flex items-center'>
                         <li className='px-7 py-1'>
-                            <NavLink to={'/'}>
+                            <NavLink to={'/movie-list'}>
                                 <RiTv2Fill className='m-auto' />
                                 <span>Афиша</span>
                             </NavLink>
@@ -64,7 +64,7 @@ const Header = () => {
                             </NavLink>
                         </li>
                         <li className='px-7 py-1 '>
-                            <NavLink className='flex flex-col items-center text-center'>
+                            <NavLink to={'/search'}  className='flex flex-col items-center text-center'>
                                 <IoSearch className='m-auto' />
                                 <span>Поиск</span>
                             </NavLink>
