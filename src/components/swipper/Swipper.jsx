@@ -1,136 +1,78 @@
-import React from 'react'
-import Swiper from 'swiper'
-import { SwiperSlide } from 'swiper/react'
+import React, { useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
+import './Swipper.css'
+import { useGetMovieDiscoverQuery, useGetMoviePopularQuery } from '../../redux/api/movie-api';
+import { FaPlay } from 'react-icons/fa6';
+import { TiStarOutline } from 'react-icons/ti';
+import { useNavigate } from 'react-router-dom';
 
 const Swipper = () => {
+    const { data, error } = useGetMoviePopularQuery()
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const navigate = useNavigate()
     return (
         <>
-            <div className=' container mt-4 '>
+            <div className='container mt-5'>
                 <Swiper
                     style={{
                         '--swiper-navigation-color': '#fff',
                         '--swiper-pagination-color': '#fff',
                     }}
-                    spaceBetween={10}
                     loop={true}
+                    spaceBetween={10}
+                    navigation={true}
                     thumbs={{ swiper: thumbsSwiper }}
-                    modules={[FreeMode, Thumbs]}
+                    modules={[FreeMode, Navigation, Thumbs]}
                     className="mySwiper2"
                 >
-                    <SwiperSlide>
-                        <div className=' w-full h-[700px] bg-panda bg-no-repeat bg-center bg-black flex items-end'>
-                            <div className='text container flex flex-col gap-4 pb-8'>
-                                <h2 className='text-white text-3xl'>Kung Fu Panda 4</h2>
-                                <div className='text-white flex items-center justify-center text-sm gap-2'>
-                                    <span>2024</span>
-                                    <span>.</span>
-                                    <span>Комедия</span>
-                                    <span>.</span>
-                                    <span>1ч 34м</span>
-                                    <span>.</span>
-                                    <span>EN</span>
-                                    <span>.</span>
-                                    <span>6+</span>
+                    {
+                        data?.results?.slice(0, 4).map(i => (
+                            <SwiperSlide className='dark:bg-black'>
+                                <div key={i.id} className='h-[680px] rounded-xl w-full dark:bg-black'>
+                                    <img className='w-full h-full rounded-xl dark:bg-black' src={import.meta.env.VITE_IMAGE_URL + i?.backdrop_path} alt="" />
+                                    <div className='absolute bottom-0 left-0 text container flex flex-col gap-4 pb-8'>
+                                        <h2 className='text-white text-3xl'>{i.title}</h2>
+                                        <div className='text-white flex items-center justify-center text-sm gap-2'>
+                                            <span>{i.release_date}</span>
+                                            <span>/</span>
+                                            <span>{i.original_language}</span>
+                                            <span>/</span>
+                                            <span className='flex items-center gap-1'><TiStarOutline className='text-orange-400 text-lg' /> {i.vote_average}</span>
+                                        </div>
+                                        <button onClick={() => navigate(`/movie/${i.id}`)} className='text-primary bg-white flex  items-center justify-center m-auto py-3 px-28 rounded-xl'>
+                                            <FaPlay />
+                                            Смотреть
+                                        </button>
+                                    </div>
                                 </div>
-                                <button className='text-primary bg-white flex  items-center justify-center m-auto py-3 px-28 rounded-xl'>
-                                    <FaPlay />
-                                    Смотреть
-                                </button>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className=' w-full h-[700px] bg-avengars bg-no-repeat bg-center bg-black flex items-end '>
-                            <div className='text container flex flex-col gap-4 pb-8'>
-                                <h2 className='text-white text-3xl'>Avengers: Infinity War</h2>
-                                <div className='text-white flex items-center justify-center text-sm gap-2'>
-                                    <span>2018</span>
-                                    <span>.</span>
-                                    <span>Комедия / Боевик / Фэнтези</span>
-                                    <span>.</span>
-                                    <span>2ч 19м</span>
-                                    <span>.</span>
-                                    <span>EN</span>
-                                    <span>.</span>
-                                    <span>16+</span>
-                                </div>
-                                <button className='text-primary bg-white flex  items-center justify-center m-auto py-3 px-28 rounded-xl'>
-                                    <FaPlay />
-                                    Смотреть
-                                </button>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className=' w-full h-[700px] bg-jon bg-no-repeat bg-center bg-black flex items-end '>
-                            <div className='text container flex flex-col gap-4 pb-8'>
-                                <h2 className='text-white text-3xl'>Jhon Wick - 4</h2>
-                                <div className='text-white flex items-center justify-center text-sm gap-2'>
-                                    <span>2023</span>
-                                    <span>.</span>
-                                    <span>Боевик</span>
-                                    <span>.</span>
-                                    <span>2ч 47м</span>
-                                    <span>.</span>
-                                    <span>EN</span>
-                                    <span>.</span>
-                                    <span>16+</span>
-                                </div>
-                                <button className='text-primary bg-white flex  items-center justify-center m-auto py-3 px-28 rounded-xl'>
-                                    <FaPlay />
-                                    Смотреть
-                                </button>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className=' w-full h-[700px] bg-venom bg-no-repeat bg-center bg-black flex items-end'>
-                            <div className='text container flex flex-col gap-4 pb-8'>
-                                <h2 className='text-white text-3xl'>Venom: The Last Dance</h2>
-                                <div className='text-white flex items-center justify-center text-sm gap-2'>
-                                    <span>2023</span>
-                                    <span>.</span>
-                                    <span>Боевик / Фэнтези</span>
-                                    <span>.</span>
-                                    <span>1ч 49м</span>
-                                    <span>.</span>
-                                    <span>EN</span>
-                                    <span>.</span>
-                                    <span>16+</span>
-                                </div>
-                                <button className='text-primary bg-white flex  items-center justify-center m-auto py-3 px-28 rounded-xl'>
-                                    <FaPlay />
-                                    Смотреть
-                                </button>
-                            </div>
-                        </div>
-                    </SwiperSlide>
+                            </SwiperSlide>
+                        ))
+                    }
                 </Swiper>
                 <Swiper
                     onSwiper={setThumbsSwiper}
+                    loop={true}
                     spaceBetween={10}
                     slidesPerView={4}
                     freeMode={true}
                     watchSlidesProgress={true}
-                    modules={[FreeMode, Thumbs]}
+                    modules={[FreeMode, Navigation, Thumbs]}
                     className="mySwiper"
                 >
-                    <SwiperSlide>
-                        <img className='w-full h-full' src={panda} alt="" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={avengars} alt="" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={john} alt="" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={venom} alt="" />
-                    </SwiperSlide>
+                    {
+                        data?.results?.slice(0, 4).map(i => (
+                            <SwiperSlide className='w-[400px]' key={i.id}>
+                                <div key={i.id} className=' dark:bg-black'>
+                                    <img className='w-full h-full rounded-xl dark:bg-black' src={import.meta.env.VITE_IMAGE_URL + i?.backdrop_path} alt="" />
+                                </div>
+                            </SwiperSlide>
+                        ))
+                    }
                 </Swiper>
             </div>
         </>

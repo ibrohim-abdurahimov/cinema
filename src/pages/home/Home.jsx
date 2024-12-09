@@ -13,13 +13,14 @@ import venom from '../../assets/venom.jpg'
 import { FaPlay } from "react-icons/fa6";
 import { useGetMovieQuery } from '../../redux/api/movie-api';
 import Movie from '../../components/Movie/Movie';
+import Swip from '../../components/swipper/Swipper';
 //  release_date
 const Home = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const {data} = useGetMovieQuery()
+  const { data } = useGetMovieQuery()
   return (
     <>
-      <div className=' container mt-4 '>
+      {/* <div className=' container mt-4 '>
         <Swiper
           style={{
             '--swiper-navigation-color': '#fff',
@@ -142,7 +143,8 @@ const Home = () => {
             <img src={venom} alt="" />
           </SwiperSlide>
         </Swiper>
-      </div>
+      </div> */}
+      <Swip />
     </>
   )
 }
