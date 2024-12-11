@@ -15,6 +15,7 @@ const MovieList = () => {
     const [type, setType] = useState(params.get('path') || 'now_playing')
     const [page, setPage] = useState(+params.get('count') || 1)
     const { data } = useGetMovieQuery({ type, params: { page } })
+    document.title = "Poster"
 
 
     useEffect(() => {
@@ -41,7 +42,7 @@ const MovieList = () => {
     }
     return (
         <>
-            <div className='mt-10 flex gap-5 justify-center'>
+            <div className='mt-10 flex gap-5 justify-center max-sm:grid grid-cols-2 px-4'>
                 {
                     MOVIE_LIST?.map(item => (
                         <button className='shadow-lg ring ring-rose-800 ring-offset-2 ring-offset-slate-50 dark:ring-offset-slate-900 py-1 px-7 rounded-md' onClick={() => handleChangeType(item.path)} key={item.id}>{item.title}</button>

@@ -10,13 +10,13 @@ const Movie = ({data}) => {
     const navigate = useNavigate()
     return (
         <>
-            <div className='container mt-10 grid grid-cols-4 gap-5'>
+            <div className='container px-4 mt-10 grid grid-cols-4 gap-5 max-md:grid-cols-3 max-sm:grid-cols-2'>
                 {
                     data?.map(movie => (
                         <div key={movie.id} className='flex flex-col justify-between'>
                             <img className='w-full h-full' onClick={() => navigate(`/movie/${movie.id}`)} src={import.meta.env.VITE_IMAGE_URL + movie.poster_path} alt="" />
                             <div>
-                                <h3 className='mt-2 text-2xl line-clamp-1' title={movie.title}>{movie.title}</h3>
+                                <h3 className='mt-2 text-2xl line-clamp-1 max-lg:text-xl' title={movie.title}>{movie.title}</h3>
                                 <p className='flex items-center gap-1'><TiStarOutline className='text-orange-400 text-lg' />
                                     {movie.vote_average}
                                 </p>

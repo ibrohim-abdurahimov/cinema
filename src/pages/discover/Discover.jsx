@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import Pagination from '@mui/material/Pagination';
 
 const Discover = () => {
+    document.title = "Genre"
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()
     const [selectedGenre, setSelectedGenre] = useState(searchParams.get('genre') && searchParams.get('genre')?.split('-').map(Number) || [])
@@ -59,12 +60,12 @@ const Discover = () => {
                     ))
                 }
             </div>
-            <div className='container mt-10 grid grid-cols-4 gap-5'>
+            <div className='container px-4 mt-10 grid grid-cols-4 gap-5 max-md:grid-cols-3 max-sm:grid-cols-2'>
                 {
                     data?.results?.map(movie => (
                         <div key={movie.id}>
                             <img onClick={() => navigate(`/movie/${movie.id}`)} src={import.meta.env.VITE_IMAGE_URL + movie.poster_path} alt="" />
-                            <h3 className='mt-2 text-2xl'>{movie.title}</h3>
+                            <h3 className='mt-2 text-2xl line-clamp-1' title={movie.title}>{movie.title}</h3>
                             <p className='flex items-center gap-1'><TiStarOutline className='text-orange-400 text-lg' />
                                 {movie.vote_average}
                             </p>

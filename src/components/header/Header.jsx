@@ -3,15 +3,14 @@ import logo from '../../assets/mainlogo.svg'
 import ruflag from '../../assets/flag rus.png'
 import uzlag from '../../assets/flagUz.png'
 import enlag from '../../assets/flagUSA.png'
-import { RiTv2Fill } from "react-icons/ri";
 import { NavLink } from 'react-router-dom';
 import { IoSearch, IoTabletPortrait } from "react-icons/io5";
-import { TbTicket } from "react-icons/tb";
-import { MdKeyboardArrowDown } from "react-icons/md";
 import { useTranslation } from 'react-i18next';
 import { BsTv } from "react-icons/bs";
 import { GiFilmStrip } from "react-icons/gi";
 import { LuSunMoon } from "react-icons/lu";
+import { FaBars } from "react-icons/fa6";
+
 
 
 const FLAGS = {
@@ -53,13 +52,14 @@ const Header = () => {
     return (
         <header className={` sticky top-0 left-0 z-50 bg-transparent ${shadow ? 'bg-zinc-950 shadow-lg text-white' : 'bg-zinc-950 text-white shadow-lg shadow-[#0002] dark:text-white dark:shadow-white dark:shadow-md dark:bg-[#0004]'}`}>
             <div className='container  px-2'>
-                <nav className='flex justify-between items-center h-[80px]'>
-                    <div>
+                <nav className='flex justify-between items-center h-[80px] relative'>
+                    <FaBars className='text-2xl hidden max-lg:block' />
+                    <div className='flex items-center gap-6'>
                         <NavLink to={'/'}>
                             <img src={logo} alt="" />
                         </NavLink>
                     </div>
-                    <ul className='flex items-center '>
+                    <ul className='flex items-center max-lg:hidden'>
                         <li className='px-7 py-1'>
                             <NavLink to={'/movie-list'} className={({ isActive }) => (isActive ? "text-red-700" : ' ')}>
                                 <BsTv className='m-auto text-lg' />
@@ -85,7 +85,7 @@ const Header = () => {
                             </NavLink>
                         </li>
                     </ul>
-                    <div className='flex gap-5 items-center'>
+                    <div className='flex gap-5 items-center max-lg:hidden'>
                         <div className='flex items-center justify-center gap-1 rounded-xl bg-gray-900 px-3 py-2 text-white'>
                             <img src={FLAGS[t("l")]} alt="" width='20px' />
                             <select value={lang} onChange={e => setLang(e.target.value)} className='bg-transparent border-none outline-none' name="" id="">
@@ -97,9 +97,14 @@ const Header = () => {
                         <button className='px-16 py-4 bg-primary text-white rounded-xl'>{t("header.login")}</button>
                         <div>
                             <button onClick={dark}>
-                                <LuSunMoon className='text-3xl text-orange-600 dark:text-blue-800 '/>
+                                <LuSunMoon className='text-3xl text-orange-600 dark:text-blue-800 ' />
                             </button>
                         </div>
+                    </div>
+                    <div className='hidden max-lg:block'>
+                        <NavLink to={'/search'} className={({ isActive }) => (isActive ? "text-red-700" : ' ')}>
+                            <IoSearch className='m-auto text-2xl' />
+                        </NavLink>
                     </div>
                 </nav>
             </div>

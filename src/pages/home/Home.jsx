@@ -16,6 +16,7 @@ import Movie from '../../components/Movie/Movie';
 import Swip from '../../components/swipper/Swipper';
 //  release_date
 const Home = () => {
+  document.title = "Cinema"
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const { data } = useGetMovieQuery()
   return (
