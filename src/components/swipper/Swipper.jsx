@@ -10,8 +10,10 @@ import { useGetMovieDiscoverQuery, useGetMoviePopularQuery } from '../../redux/a
 import { FaPlay } from 'react-icons/fa6';
 import { TiStarOutline } from 'react-icons/ti';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Swipper = () => {
+    const { t } = useTranslation()
     const { data, error } = useGetMoviePopularQuery()
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const navigate = useNavigate()
@@ -46,7 +48,7 @@ const Swipper = () => {
                                         </div>
                                         <button onClick={() => navigate(`/movie/${i.id}`)} className='text-primary bg-white flex  items-center justify-center m-auto py-3 px-28 rounded-xl'>
                                             <FaPlay />
-                                            Смотреть
+                                            {t("look")}
                                         </button>
                                     </div>
                                 </div>

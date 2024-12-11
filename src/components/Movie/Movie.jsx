@@ -16,7 +16,7 @@ const Movie = ({data}) => {
                         <div key={movie.id} className='flex flex-col justify-between'>
                             <img className='w-full h-full' onClick={() => navigate(`/movie/${movie.id}`)} src={import.meta.env.VITE_IMAGE_URL + movie.poster_path} alt="" />
                             <div>
-                                <h3 className='mt-2 text-2xl'>{movie.title}</h3>
+                                <h3 className='mt-2 text-2xl line-clamp-1' title={movie.title}>{movie.title}</h3>
                                 <p className='flex items-center gap-1'><TiStarOutline className='text-orange-400 text-lg' />
                                     {movie.vote_average}
                                 </p>

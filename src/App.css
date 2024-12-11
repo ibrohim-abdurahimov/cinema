@@ -1,1 +1,10 @@
-
+.scroll::-webkit-scrollbar{
+    height: 7px;
+    cursor: pointer;
+  }
+  
+  .scroll::-webkit-scrollbar-thumb{
+    background-color: #C61F1F;
+    border-radius: 5px;
+    cursor: pointer;
+  }

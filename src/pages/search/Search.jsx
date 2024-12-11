@@ -3,8 +3,10 @@ import { useGetMovieBySearchQuery } from '../../redux/api/movie-api'
 import Movie from '../../components/Movie/Movie'
 import { useSearchParams } from 'react-router-dom'
 import { IoSearch } from 'react-icons/io5'
+import { useTranslation } from 'react-i18next'
 
 const Search = () => {
+    const {t} = useTranslation()
     const [searchParams, setSearchParams] = useSearchParams()
     const [searchValue, setSearchValue] = useState("")
     const [search, setSearch] = useState("")
@@ -31,12 +33,12 @@ const Search = () => {
                 <form onSubmit={handleSearch} action="" className='flex justify-center items-center gap-1 '>
                     <div className='flex items-center gap-2 bg-[#111111] p-5 rounded-xl'>
                         <IoSearch className='text-red-700 text-2xl' />
-                        <input className='bg-transparent text-white placeholder:text-white pl-2 outline-none w-[500px]' value={searchValue} onChange={handleChange} type="search" placeholder='Search...' />
+                        <input className='bg-transparent text-white placeholder:text-white pl-2 outline-none w-[500px]' value={searchValue} onChange={handleChange} type="search" placeholder={t("search.search")} />
                     </div>
                     {/* <button>Search</button> */}
                 </form>
             {
-                !data?.total_results && !isLoading && <div><h2 className='text-center mt-16'>Movie is not found</h2></div>
+                !data?.total_results && !isLoading && <div><h2 className='text-center mt-16'>{t("search.notFound")}</h2></div>
             }
             </div>
             <Movie data={data?.results} />

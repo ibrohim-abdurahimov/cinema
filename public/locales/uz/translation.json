@@ -1,0 +1,29 @@
+{
+    "l": "uz",
+    "header":{
+        "poster": "Post",
+        "genre": "Janr",
+        "search": "Qidiruv",
+        "login": "Kirish"
+    },
+    "search":{
+        "search": "Qidiruv...",
+        "notFound": "Film topilmadi"
+    },
+    "look":"Ko'rish",
+    "footer":{
+        "about": "Biz haqimizda",
+        "offer": "Ommaviy taklif",
+        "adver": "Reklama",
+        "f.a.q": "F.A.Q",
+        "contact": "Kontaktlar",
+        "category": "Kategoriyalar",
+        "film":"Kino",
+        "theater": "Teatr",
+        "concert": "Konsertlar",
+        "sport": "Sport",
+        "contact us": "Biz bilan bog'lanish",
+        "social": "Ijtimoiy tarmoqlar"
+    }
+    
+}

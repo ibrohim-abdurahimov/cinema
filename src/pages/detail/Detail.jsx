@@ -23,7 +23,7 @@ const Detail = () => {
     <>
       <div className='mb-[400px]'>
         <div className={`w-full min-h-[630px]`}>
-          <img src={import.meta.env.VITE_IMAGE_URL + data?.backdrop_path} className='w-full h-[700px] absolute top-0 left-0 object-cover' alt="" />
+          <img src={import.meta.env.VITE_IMAGE_URL + data?.backdrop_path} className='w-full h-[700px] absolute top-0 left-0 object-center' alt="" />
           <div className='w-full h-[90px] absolute top-[610px] left-0 bg-[#0003]'></div>
           <div className='absolute top-[670px] left-0 w-full '>
             <div className='absolute top-[-30px] left-11 z-10 '>
@@ -69,11 +69,11 @@ const Detail = () => {
       </div>
       <div className='container mt-16 w-full '>
         <h2 className='text-3xl mb-5'>Similar</h2>
-        <div className='flex gap-5 overflow-x-auto w-full h-auto p-5 mt-3'>
+        <div className='scroll flex gap-5 overflow-x-auto w-full h-auto p-5 mt-3 cursor-pointer'>
           {
             similar?.results?.map(img => (
-                <div className='min-w-[400px]'>
-                  <img onClick={()=> navigate(`/movie/${img.id}`)} className='w-full h-[450px]' src={import.meta.env.VITE_IMAGE_URL + img?.poster_path} key={img.file_path} alt="" />
+                <div className='min-w-[350px]'>
+                  <img onClick={()=> navigate(`/movie/${img.id}`)} className='w-full h-[500px]' src={import.meta.env.VITE_IMAGE_URL + img?.poster_path} key={img.file_path} alt="" />
                   <h2 className='mt-4 text-2xl text-center'>{img.title}</h2>
                 </div>
             ))

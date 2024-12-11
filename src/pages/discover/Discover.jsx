@@ -9,13 +9,13 @@ const Discover = () => {
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()
     const [selectedGenre, setSelectedGenre] = useState(searchParams.get('genre') && searchParams.get('genre')?.split('-').map(Number) || [])
-    const [page, setPage] = useState(+searchParams.get('count') ||1)
+    const [page, setPage] = useState(+searchParams.get('count') || 1)
     const { data: genres } = useGetGenreQuery()
-    const { data, isLoading } = useGetMovieDiscoverQuery({ 
+    const { data, isLoading } = useGetMovieDiscoverQuery({
         with_genres: selectedGenre.join(','),
         page,
         without_genres: '10749,18'
-    
+
     })
     // useEffect(() => {
     //     if(selectedGenre.length){
@@ -29,7 +29,7 @@ const Discover = () => {
         const p = new URLSearchParams(searchParams)
         if (selectedGenre.includes(id)) {
             setSelectedGenre(p => p.filter(i => i !== id))
-            p.set('genre', selectedGenre.filter(i=> i !== id).join('-'))
+            p.set('genre', selectedGenre.filter(i => i !== id).join('-'))
         } else {
             setSelectedGenre(p => [...p, id])
             p.set('genre', [...selectedGenre, id].join('-'))
@@ -41,12 +41,17 @@ const Discover = () => {
     const handleChange = (event, value) => {
         setPage(value);
         const p = new URLSearchParams(searchParams)
-        p.set('count' , value)
+        p.set('count', value)
         setSearchParams(p)
-      }
+    }
+    const main = {
+        '& .Mui-selected': {
+            color: 'red'
+        }
+    }
     return (
         <>
-            <div className='container mt-10 flex gap-5 overflow-auto p-5 pt-4 '>
+            <div className='scroll container mt-10 flex gap-5 overflow-auto p-5 pt-4'>
                 {
                     genres?.genres?.map(genre => (
                         <button onClick={() => handleChangeGenre(genre.id)} className={`whitespace-nowrap shadow-lg ring ring-rose-800 ring-offset-2 ring-offset-slate-50 dark:ring-offset-slate-900 py-1 px-7 rounded-md ${selectedGenre.includes(genre.id) ? 'text-white bg-rose-600 dark:text-rose-600 dark:bg-white' : ''}`}
@@ -58,7 +63,7 @@ const Discover = () => {
                 {
                     data?.results?.map(movie => (
                         <div key={movie.id}>
-                            <img onClick={()=> navigate(`/movie/${movie.id}`)} src={import.meta.env.VITE_IMAGE_URL + movie.poster_path} alt="" />
+                            <img onClick={() => navigate(`/movie/${movie.id}`)} src={import.meta.env.VITE_IMAGE_URL + movie.poster_path} alt="" />
                             <h3 className='mt-2 text-2xl'>{movie.title}</h3>
                             <p className='flex items-center gap-1'><TiStarOutline className='text-orange-400 text-lg' />
                                 {movie.vote_average}
@@ -71,7 +76,7 @@ const Discover = () => {
                 !data?.total_results && !isLoading && <div><h2 className='text-center'>Movie is not found</h2></div>
             }
             <div className='flex justify-center pt-6'>
-                <Pagination variant="outlined" shape="rounded" className='bg-white'  color='primary'  count={data?.total_pages > 500 ? 500:data?.total_pages } page={page} onChange={handleChange}/>
+                <Pagination sx={main} className='bg-[#ddd] rounded-md px-2 py-1 text-red-600 dark:bg-white' count={data?.total_pages > 500 ? 500 : data?.total_pages} page={page} onChange={handleChange} />
             </div>
         </>
     )

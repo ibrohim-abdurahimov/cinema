@@ -1,0 +1,28 @@
+{
+    "l": "en",
+    "header":{
+        "poster": "Poster",
+        "genre": "Genre",
+        "search": "Search",
+        "login": "Login"
+    },
+    "search":{
+        "search": "Search...",
+        "notFound": "Movie is not found"
+    },
+    "look":"Look",
+    "footer":{
+        "about": "About Us",
+        "offer": "Public offer",
+        "adver": "Advertisement",
+        "f.a.q": "F.A.Q",
+        "contact": "Contacts",
+        "category": "Categories",
+        "theater": "Theater",
+        "film": "Movie",
+        "concert": "Concerts",
+        "sport": "Sport",
+        "contact us": "Contact us",
+        "social": "Social media"
+    }
+}

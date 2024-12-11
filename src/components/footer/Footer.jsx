@@ -12,10 +12,12 @@ import { FaBasketball } from "react-icons/fa6";
 import { BiLogoInstagramAlt } from "react-icons/bi";
 import { FaFacebook } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
+import { useTranslation } from 'react-i18next';
 
 
 
 const Footer = () => {
+  const { t } = useTranslation()
   return (
     <>
       <footer className='mt-[120px]  bg-footer'>
@@ -34,50 +36,50 @@ const Footer = () => {
             </div>
           </div>
           <div className='text-white flex flex-col gap-5'>
-            <h2>О нас</h2>
+            <h2>{t("footer.about")}</h2>
             <div className='flex items-center gap-2'>
               <FaFileAlt className='text-primary' />
-              <p>Публичная оферта</p>
+              <p>{t("footer.offer")}</p>
             </div>
             <div className='flex items-center gap-2'>
               <LuSparkle className='text-primary' />
-              <p>Реклама</p>
+              <p>{t("footer.adver")}</p>
             </div>
             <div className='flex items-center gap-2'>
               <FaQuestionCircle className='text-primary' />
-              <p>F.A.Q</p>
+              <p>{t("footer.f.a.q")}</p>
             </div>
             <div className='flex items-center gap-2'>
               <FaPhone className='text-primary' />
-              <p>Контакты</p>
+              <p>{t("footer.contact")}</p>
             </div>
           </div>
           <div className='text-white flex flex-col gap-5'>
-            <h2>Категории</h2>
+            <h2>{t("footer.category")}</h2>
             <div className='flex items-center gap-2'>
               <BiSolidMoviePlay className='text-primary' />
-              <p>Кино</p>
+              <p>{t("footer.film")}</p>
             </div>
             <div className='flex items-center gap-2'>
               <MdMovie className='text-primary' />
-              <p>Театр</p>
+              <p>{t("footer.theater")}</p>
             </div>
             <div className='flex items-center gap-2'>
               <RiMovie2Fill className='text-primary' />
-              <p>Концерты</p>
+              <p>{t("footer.concert")}</p>
             </div>
             <div className='flex items-center gap-2'>
               <FaBasketball className='text-primary' />
-              <p>Спорт</p>
+              <p>{t("footer.sport")}</p>
             </div>
           </div>
           <div className='flex flex-col justify-between'>
             <div className='flex flex-col gap-5'>
-              <h2 className='text-white'>Связаться с нами</h2>
+              <h2 className='text-white'>{t("footer.contact us")}</h2>
               <p className='text-primary'>+998 (95) 897-33-38</p>
             </div>
             <div className='flex flex-col gap-5'>
-              <h2 className='text-white'>Социальные сети</h2>
+              <h2 className='text-white'>{t("footer.social")}</h2>
               <div className='flex gap-5'>
                 <BiLogoInstagramAlt className='text-primary' />
                 <FaFacebook className='text-primary' />
